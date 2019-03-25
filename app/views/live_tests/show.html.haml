@@ -1,0 +1,14 @@
+= form_for Solution.new do |f|  
+  - @questions.each_with_index do |question, index|
+    %p 
+      = "#{index + 1})" 
+      = question.exact_question
+      = params[:questions][question.id.to_s] == "true" ? "Correct answer(s)" : "Wrong answer(s)" 
+      %p
+        - question.answers.shuffle.each_with_index  do |answer, i|
+          = "#{@a_z[i]})"
+          = answer.exact_answer
+          = check_box_tag "#{answer.id}", question.id
+          = f.hidden_field :test_id, value: @test.id
+  = f.submit "Answer questions"
+= params[:score]

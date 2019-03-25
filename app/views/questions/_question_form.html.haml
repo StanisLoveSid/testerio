@@ -1,0 +1,4 @@
+= form_for(Question.new) do |f|
+  = f.text_field :exact_question
+  = f.hidden_field :test_id, value: test_id
+  = f.submit

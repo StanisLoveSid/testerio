@@ -1,0 +1,6 @@
+= form_for Answer.new do |f|
+  = f.number_field :score
+  = f.text_field :exact_answer
+  = f.check_box :correct
+  = f.hidden_field :question_id, value: question_id
+  = f.submit

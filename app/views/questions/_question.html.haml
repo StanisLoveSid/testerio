@@ -1,0 +1,4 @@
+= question.exact_question
+= render "answers/answer_form", question_id: question.id
+- question.answers.each do |answer|
+  = render answer
