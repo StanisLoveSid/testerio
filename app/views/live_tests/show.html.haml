@@ -3,12 +3,15 @@
     %p 
       = "#{index + 1})" 
       = question.exact_question
-      = params[:questions][question.id.to_s] == "true" ? "Correct answer(s)" : "Wrong answer(s)" 
+      = correct_answers(question) 
       %p
         - question.answers.shuffle.each_with_index  do |answer, i|
           = "#{@a_z[i]})"
           = answer.exact_answer
-          = check_box_tag "#{answer.id}", question.id
-          = f.hidden_field :test_id, value: @test.id
+          = check_box_tag "#{answer.id}", question.id, checked_answers(answer)
+          = f.hidden_field :solutionable_id, value: @test.id
+          = f.hidden_field :solutionable_type, value: @test.class.to_s
   = f.submit "Answer questions"
 = params[:score]
+- if @next && percents
+  = link_to "Next >", live_test_path(@next)

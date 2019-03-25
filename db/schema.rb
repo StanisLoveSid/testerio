@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_23_210206) do
+ActiveRecord::Schema.define(version: 2019_03_25_205230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,22 @@ ActiveRecord::Schema.define(version: 2019_03_23_210206) do
   end
 
   create_table "solutions", force: :cascade do |t|
-    t.bigint "test_id"
     t.integer "total_score", default: 0
+    t.string "solutionable_type"
+    t.bigint "solutionable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["test_id"], name: "index_solutions_on_test_id"
+    t.index ["solutionable_id", "solutionable_type"], name: "index_solutions_on_solutionable_id_and_solutionable_type"
+    t.index ["solutionable_type", "solutionable_id"], name: "index_solutions_on_solutionable_type_and_solutionable_id"
+  end
+
+  create_table "test_groups", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_test_groups_on_user_id"
   end
 
   create_table "tests", force: :cascade do |t|
@@ -49,9 +60,24 @@ ActiveRecord::Schema.define(version: 2019_03_23_210206) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "aasm_state"
+    t.bigint "test_group_id"
+    t.index ["test_group_id"], name: "index_tests_on_test_group_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "tests"
-  add_foreign_key "solutions", "tests"
+  add_foreign_key "test_groups", "users"
+  add_foreign_key "tests", "test_groups"
 end

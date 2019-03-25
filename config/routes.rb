@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :test_groups
+  devise_for :users
   resources :live_tests, only: [:index, :show]
   resources :solutions
   resources :answers
