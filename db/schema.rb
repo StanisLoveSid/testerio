@@ -37,12 +37,11 @@ ActiveRecord::Schema.define(version: 2019_03_25_205230) do
 
   create_table "solutions", force: :cascade do |t|
     t.integer "total_score", default: 0
-    t.string "solutionable_type"
-    t.bigint "solutionable_id"
+    t.integer "user_id"
+    t.integer "test_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["solutionable_id", "solutionable_type"], name: "index_solutions_on_solutionable_id_and_solutionable_type"
-    t.index ["solutionable_type", "solutionable_id"], name: "index_solutions_on_solutionable_type_and_solutionable_id"
+    t.index ["user_id", "test_id"], name: "index_solutions_on_user_id_and_test_id"
   end
 
   create_table "test_groups", force: :cascade do |t|

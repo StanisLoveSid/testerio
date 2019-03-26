@@ -9,9 +9,10 @@
           = "#{@a_z[i]})"
           = answer.exact_answer
           = check_box_tag "#{answer.id}", question.id, checked_answers(answer)
-          = f.hidden_field :solutionable_id, value: @test.id
-          = f.hidden_field :solutionable_type, value: @test.class.to_s
+          = f.hidden_field :test_id, value: @test.id
+          = f.hidden_field :user_id, value: current_user.id
   = f.submit "Answer questions"
 = params[:score]
 - if @next && percents
   = link_to "Next >", live_test_path(@next)
+= current_user.solutions.count

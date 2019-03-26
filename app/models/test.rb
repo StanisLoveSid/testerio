@@ -11,5 +11,5 @@ class Test < ApplicationRecord
   end
 
   has_many :questions, dependent: :destroy
-  has_many :solutions, as: :solutionable, dependent: :destroy
+  has_many :solutions, dependent: :destroy
 end
