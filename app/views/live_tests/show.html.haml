@@ -13,9 +13,8 @@
           = f.hidden_field :user_id, value: current_user.id
   = f.submit "Answer questions"
 = params[:score]
-- if @next && percents
+- if @progress > 60.0
   = link_to "Next >", live_test_path(@next)
-= current_user.solutions.count
 %p
   Your max score:
-  = @max_score
+  = @user_max_score

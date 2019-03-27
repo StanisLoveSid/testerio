@@ -12,4 +12,8 @@ class Test < ApplicationRecord
 
   has_many :questions, dependent: :destroy
   has_many :solutions, dependent: :destroy
+
+  def score
+  	questions.map(&:answers).map{|answers| answers.map(&:score).sum}.sum
+  end
 end
