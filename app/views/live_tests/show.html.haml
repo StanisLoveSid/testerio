@@ -13,8 +13,9 @@
           = f.hidden_field :user_id, value: current_user.id
   = f.submit "Answer questions"
 = params[:score]
-- if @progress > 60.0
+- if @progress > 60.0 && @next
   = link_to "Next >", live_test_path(@next)
 %p
   Your max score:
   = @user_max_score
+= link_to "Sign out", destroy_user_session_path, method: :delete
