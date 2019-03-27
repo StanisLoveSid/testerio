@@ -16,5 +16,6 @@
 - if @next && percents
   = link_to "Next >", live_test_path(@next)
 = current_user.solutions.count
-- current_user.solutions.each do |solution|
-  = solution.total_score
+%p
+  Your max score:
+  = @max_score

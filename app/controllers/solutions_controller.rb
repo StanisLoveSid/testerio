@@ -41,7 +41,7 @@ class SolutionsController < ApplicationController
         max_total_score = current_solutions.map(&:total_score).max
         latest_solution = current_solutions.map(&:created_at).max
         with_max_score = current_solutions.each {|solution| solution.destroy if solution.total_score < max_total_score}
-        with_max_score.each {|solution| solution.destroy if solution.created_at < latest_solution && current_solutions.count != 1}
+        with_max_score.each {|solution| solution.destroy if solution.created_at < latest_solution && current_solutions.count > 1}
       else
         flash[:alert] = "Something went wrong"
         redirect_to live_test_path(@test, questions: correct_questions, answers: selected_answers)
