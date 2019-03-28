@@ -32,11 +32,9 @@ class SolutionsController < ApplicationController
         state_of_questions.each_with_index do |question, i|
           correct_questions[question] = state_of_answers[i]
         end
-        max_score = @test.score
-        progress = (score.to_f / max_score.to_f * 100.0).round(1)
         redirect_to live_test_path(@test, questions: correct_questions,
                                    score: "Your score is #{@test.solutions.last.total_score}(#{progress}%)",
-                                   answers: selected_answers, percents: progress)
+                                   answers: selected_answers)
         current_solutions = current_user.solutions.where("test_id = ?", @test.id)
         max_total_score = current_solutions.map(&:total_score).max
         latest_solution = current_solutions.map(&:created_at).max
