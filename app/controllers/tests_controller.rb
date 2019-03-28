@@ -11,13 +11,13 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.new(tests_params)
+    @test = Test.new(test_params)
     if @test.save
       flash[:success] = "test is saved"
     else
       flash[:alert] = "something went wrong"
     end
-    redirect_to root_path
+    redirect_to @test
   end
 
   def perform_test
@@ -33,7 +33,7 @@ class TestsController < ApplicationController
 
   private
 
-  def tests_params
-    params.require(:test).permit(:title, :description)
+  def test_params
+    params.require(:test).permit(:title, :description, :test_group_id, :user_id)
   end
 end

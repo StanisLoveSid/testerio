@@ -1,0 +1,2 @@
+- @solutions.each do |test_group, state|
+  = link_to "test group #{test_group.id}", live_test_group_path(test_group) if state

@@ -1,0 +1,7 @@
+= test_group.title
+= test_group.description
+= render "tests/test_form", test_group_id: test_group.id
+
+%p
+  - test_group.tests.each do |test|
+    = link_to "test #{test.id}", test_path(test)

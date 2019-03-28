@@ -8,8 +8,9 @@ class LiveTestsController < ApplicationController
     @questions = @test.questions.shuffle
     @a_z = ('a'..'z').to_a
     @next = TestGroup.find(@test.test_group_id).tests.where(["id > ?", @test.id]).first
-    @user_max_score = current_user.solutions.where(["test_id = ?", @test.id]).first.total_score
-    @passed = @test.passed? @user_max_score
+    current_solution = current_user.solutions.where(["test_id = ?", @test.id]).first
+    @user_max_score = current_solution.nil? ? 0 : current_solution.total_score
+    @passed = @test.percents @user_max_score
   end
 
 end

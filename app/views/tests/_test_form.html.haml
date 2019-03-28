@@ -1,4 +1,6 @@
 = form_for(Test.new) do |f|
   = f.text_field :title
   = f.text_field :description
-  = f.submit "Submit"
+  = f.hidden_field :test_group_id, value: test_group_id
+  = f.hidden_field :user_id, value: current_user.id
+  = f.submit "Submit test"
