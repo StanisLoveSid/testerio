@@ -47,6 +47,8 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.5.0)
       execjs
+    awesome-bootstrap-checkbox (1.0.0)
+      bootstrap-sass
     bcrypt (3.1.12)
     bindex (0.5.0)
     bootsnap (1.4.1)
@@ -77,6 +79,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.10.0)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -222,12 +226,14 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  awesome-bootstrap-checkbox (~> 1.0)
   bootsnap (>= 1.1.0)
   bootstrap-sass
   byebug
   cancancan (~> 2.0)
   coffee-rails (~> 4.2)
   devise
+  font-awesome-rails
   haml-rails (~> 1.0)
   jbuilder (~> 2.5)
   jquery-rails

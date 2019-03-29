@@ -1,16 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
-@import "awesome-bootstrap-checkbox";
-
-body{
-  font-family: "Ubuntu";
-}
-
-a:link { 
-  text-decoration:none;
-}
-
 .checkbox {
   padding-left: 20px;
 }

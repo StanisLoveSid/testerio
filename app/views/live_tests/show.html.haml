@@ -5,17 +5,21 @@
       = question.exact_question
       = correct_answers(question) 
       %p
-        - question.answers.shuffle.each_with_index  do |answer, i|
-          = "#{@a_z[i]})"
-          = answer.exact_answer
-          = check_box_tag "#{answer.id}", question.id, checked_answers(answer)
+        - question.answers.shuffle.each_with_index  do |answer, i|  
+          .checkbox.checkbox-info
+            = check_box_tag "#{answer.id}", question.id, checked_answers(answer), class: "styled", id: "answer_#{answer.id}"
+            %label{for: "answer_#{answer.id}"}
+              = "#{@a_z[i]})"
+              = answer.exact_answer
           = f.hidden_field :test_id, value: @test.id
           = f.hidden_field :user_id, value: current_user.id
-  = f.submit "Answer questions"
-= params[:score]
-- if @passed && @next
-  = link_to "Next >", live_test_path(@next)
-%p
-  Your max score:
-  = @user_max_score
+  = f.submit "Answer questions", class: "btn btn-info"
+%div{style: "margin-top: 1%;"}  
+  %p
+    = params[:score]
+  %p  
+    Your max score:
+    = @user_max_score
+  - if @passed && @next
+    = link_to "To the next test", live_test_path(@next)
 = link_to "Sign out", destroy_user_session_path, method: :delete
