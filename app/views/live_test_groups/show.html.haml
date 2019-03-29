@@ -1,3 +1,4 @@
-- @test_group.tests.each do |test|
-  = link_to "test #{test.id}", live_test_path(test)
-= @passed
+- @test_group.tests.production.each_with_index do |test, i|
+  %p
+    = link_to_if (@solutions[i-1] || @solutions[i-1].nil?), "test #{test.id}", live_test_path(test)
+    = "have to pass previous test" unless (@solutions[i-1] || @solutions[i-1].nil?)

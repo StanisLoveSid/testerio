@@ -1,2 +1,4 @@
-- @solutions.each do |test_group, state|
-  = link_to "test group #{test_group.id}", live_test_group_path(test_group) if state
+- @subject.test_groups.each_with_index do |test_group, i|
+  %p
+    = link_to_if (@solutions[i-1] || @solutions[i-1].nil?), "test group #{test_group.id}", live_test_group_path(test_group)
+    = "have to pass previous tests" unless (@solutions[i-1] || @solutions[i-1].nil?)

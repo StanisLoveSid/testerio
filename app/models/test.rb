@@ -18,7 +18,7 @@ class Test < ApplicationRecord
     (user_score.to_f / score.to_f * 100.0).round(1)                                                                   
   end
   
-  def passed?
+  def passed?(percents)
     percents > 60.0
   end
 
