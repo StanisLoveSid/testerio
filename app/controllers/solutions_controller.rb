@@ -34,6 +34,7 @@ class SolutionsController < ApplicationController
         end
         redirect_to live_test_path(@test, questions: correct_questions,
                                    score: "Your score is #{@test.solutions.last.total_score}(#{@test.percents(score)}%)",
+                                   percents: @test.percents(score),
                                    answers: selected_answers)
         current_solutions = current_user.solutions.where("test_id = ?", @test.id)
         max_total_score = current_solutions.map(&:total_score).max

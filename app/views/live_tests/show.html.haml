@@ -22,4 +22,19 @@
     = @user_max_score
   - if @passed && @next
     = link_to "To the next test", live_test_path(@next)
+  = link_to "To test group", live_test_group_path(@test.test_group)
+  %p
+    %a.link Your reward    
 = link_to "Sign out", destroy_user_session_path, method: :delete
+ 
+:javascript
+  setTimeout(function() {
+    $("a.link").on("click",function(){
+    if ("#{params[:percents]}" > 60.0) {
+      window.open("#{@test.pass_link}",'_blank');
+      } else {
+      window.open("#{@test.unpassed_link}",'_blank');
+     };
+    });
+    ("#{params[:percents]}") ? $("a.link").click() : "";
+  }, 3000);

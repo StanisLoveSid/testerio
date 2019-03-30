@@ -1,3 +1,4 @@
 = render "questions/question_form", test_id: @test.id
 = render @questions
 = link_to "Sumbit test for solving", "perform_test/#{@test.id}"
+= link_to "Back to subject", subject_path(@test.test_group.subject)

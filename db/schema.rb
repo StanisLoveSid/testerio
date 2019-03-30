@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_28_175606) do
+ActiveRecord::Schema.define(version: 2019_03_30_133752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2019_03_28_175606) do
     t.string "aasm_state"
     t.bigint "test_group_id"
     t.integer "user_id"
+    t.text "pass_link"
+    t.text "unpassed_link"
     t.index ["test_group_id"], name: "index_tests_on_test_group_id"
   end
 

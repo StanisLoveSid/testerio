@@ -1,4 +1,6 @@
 = form_for(Test.new) do |f|
+  = f.text_field :pass_link, placeholder: "Link for passing test"
+  = f.text_field :unpassed_link, placeholder: "Link if test is not passed"
   = f.text_field :title
   = f.text_field :description
   = f.hidden_field :test_group_id, value: test_group_id
