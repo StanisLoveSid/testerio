@@ -2,3 +2,4 @@
   %p
     = link_to_if (@solutions[i-1] || @solutions[i-1].nil?), "test #{test.id}", live_test_path(test)
     = "have to pass previous test" unless (@solutions[i-1] || @solutions[i-1].nil?)
+= link_to "Back to subject", live_subject_path(@test_group.subject)

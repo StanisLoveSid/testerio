@@ -26,6 +26,7 @@ class SolutionsController < ApplicationController
     correct_questions = {}
     state_of_answers = correctness.map{ |answers| answers.reduce(:&) }
     state_of_questions = questions.map { |questions| questions.uniq.first.to_i }
+    current_user.save unless signed_in?
     if answered_questions_amount == test_questions_amount
       if @solution.save
         flash[:success] = "solution is saved"
@@ -41,6 +42,7 @@ class SolutionsController < ApplicationController
         latest_solution = current_solutions.map(&:created_at).max
         with_max_score = current_solutions.each {|solution| solution.destroy if solution.total_score < max_total_score}
         with_max_score.each {|solution| solution.destroy if solution.created_at < latest_solution && current_solutions.count > 1}
+        User.all.where(['email LIKE ?', "%session%"]).destroy_all
       else
         flash[:alert] = "Something went wrong"
         redirect_to live_test_path(@test, questions: correct_questions, answers: selected_answers)
