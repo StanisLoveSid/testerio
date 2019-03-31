@@ -21,7 +21,7 @@ gem "haml-rails", "~> 1.0"
 gem 'aasm'
 gem 'cancancan', '~> 2.0'
 gem 'awesome-bootstrap-checkbox', '~> 1.0'
-gem "font-awesome-rails"
+gem 'font-awesome-sass'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
