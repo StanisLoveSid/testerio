@@ -17,14 +17,18 @@
 %div{style: "margin-top: 1%;"}  
   %p
     = params[:score]
-  %p  
+  %p
+    %p
+      - unless signed_in?
+        Sign up if you want to save your score  
     Your max score:
     = @user_max_score
   - if @passed && @next
     = link_to "To the next test", live_test_path(@next)
   = link_to "To test group", live_test_group_path(@test.test_group)
   %p
-    %a.link Your reward    
+    - if params[:score]
+      %a.link{style: "font-size: 25px;"} Your reward    
 = link_to "Sign out", destroy_user_session_path, method: :delete
  
 :javascript
